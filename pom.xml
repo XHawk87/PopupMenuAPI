@@ -61,10 +61,6 @@
                 <includes>
                     <include>**</include>
                 </includes>
-        <!-- Don't add source files to target jar -->
-                <excludes>
-                    <exclude>com/xhawk87/**/*.java</exclude>
-                </excludes>
             </resource>
             <resource>
                 <directory>src/main/resources/</directory>
