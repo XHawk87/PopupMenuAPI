@@ -3,7 +3,7 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>com.xhawk87</groupId>
+    <groupId>me.xhawk87</groupId>
     <artifactId>PopupMenuAPI</artifactId>
     <version>0.1</version>
     <packaging>jar</packaging>
@@ -30,7 +30,7 @@
             <groupId>org.bukkit</groupId>
             <artifactId>bukkit</artifactId>
             <!-- Bukkit API Version, change if necessary -->
-            <version>1.4.7-R0.1</version>
+            <version>1.5.1-R0.3-SNAPSHOT</version>
         </dependency>
         <dependency>
             <groupId>junit</groupId>
@@ -54,7 +54,7 @@
     
     <!-- Build -->
     <build>
-    <!-- Resources -->
+        <!-- Resources -->
         <resources>
             <resource>
                 <directory>src/main/java/</directory>
@@ -68,9 +68,9 @@
             </resource>
         </resources>
         <defaultGoal>clean install</defaultGoal>
-	<!-- Plugins -->
+        <!-- Plugins -->
         <plugins>
-	  <!-- Compiler plugin -->
+            <!-- Compiler plugin -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
