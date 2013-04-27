@@ -5,7 +5,7 @@
 
     <groupId>me.xhawk87</groupId>
     <artifactId>PopupMenuAPI</artifactId>
-    <version>0.1</version>
+    <version>0.1.1</version>
     <packaging>jar</packaging>
 
     <name>PopupMenuAPI</name>
