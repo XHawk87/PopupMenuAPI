@@ -130,7 +130,7 @@ public class PopupMenu implements InventoryHolder {
      */
     public boolean removeMenuItem(int index) {
         ItemStack slot = getInventory().getItem(index);
-        if (slot != null && slot.getType() != Material.AIR) {
+        if (slot == null || slot.getTypeId() == 0) {
             return false;
         }
         getInventory().clear(index);
