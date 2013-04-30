@@ -88,7 +88,6 @@ public class PopupMenuAPI extends JavaPlugin implements Listener {
                         // If they want to mess with their inventory they don't need to do so in a menu
                         if (menu.exitOnClickOutside()) {
                             menu.closeMenu(player);
-                            player.openInventory(player.getInventory());
                         }
                     }
                 }
