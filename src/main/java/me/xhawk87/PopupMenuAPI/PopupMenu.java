@@ -151,7 +151,7 @@ public class PopupMenu implements InventoryHolder {
      * Important note: This should not be used to switch from one menu to
      * another within the same tick as there is an error with Bukkit inventories
      * that will cause it to glitch. Instead delay 1 tick before opening or use
-     * the PopupMenuAPI.switchMenu method to do it for you.
+     * the switchMenu method to do it for you.
      *
      * Be aware that if you make changes to a menu with multiple viewers it will
      * change for all of them. You should use the PopupMenuAPI.cloneMenu method
@@ -179,6 +179,18 @@ public class PopupMenu implements InventoryHolder {
             player.closeInventory();
             getInventory().getViewers().remove(player);
         }
+    }
+    
+    /**
+     * Closes this menu and opens another in the next tick. This avoids the 
+     * Bukkit glitchiness caused by closing and opening inventories in the same
+     * tick. 
+     * 
+     * @param player The player switching menus
+     * @param toMenu The menu to switch to
+     */
+    public void switchMenu(Player player, PopupMenu toMenu) {
+        PopupMenuAPI.switchMenu(player, this, toMenu);
     }
 
     /**
