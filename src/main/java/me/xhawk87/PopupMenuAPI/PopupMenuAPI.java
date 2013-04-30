@@ -4,7 +4,6 @@
  */
 package me.xhawk87.PopupMenuAPI;
 
-import org.bukkit.Bukkit;
 import org.bukkit.entity.HumanEntity;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -15,6 +14,7 @@ import org.bukkit.event.inventory.InventoryCloseEvent;
 import org.bukkit.event.inventory.InventoryType;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.plugin.java.JavaPlugin;
+import org.bukkit.scheduler.BukkitRunnable;
 
 /**
  * PopupMenuAPI
@@ -22,10 +22,13 @@ import org.bukkit.plugin.java.JavaPlugin;
  * @author XHawk87
  */
 public class PopupMenuAPI extends JavaPlugin implements Listener {
-
+    
+    private static PopupMenuAPI instance;
+    
     @Override
     public void onEnable() {
-        Bukkit.getPluginManager().registerEvents(this, this);
+        instance = this;
+        getServer().getPluginManager().registerEvents(this, this);
     }
 
     /**
@@ -68,6 +71,26 @@ public class PopupMenuAPI extends JavaPlugin implements Listener {
         }
     }
 
+    /**
+     * Due to a bug with inventories, switching from one menu to another in the
+     * same tick causes glitchiness. In order to prevent this, the opening must
+     * be done in the next tick. This is a convenience method to perform this
+     * task for you.
+     *
+     * @param player The player switching menus
+     * @param fromMenu The menu the player is currently viewing
+     * @param toMenu The menu the player is switching to
+     */
+    public static void switchMenu(final Player player, PopupMenu fromMenu, final PopupMenu toMenu) {
+        fromMenu.closeMenu(player);
+        new BukkitRunnable() {
+            @Override
+            public void run() {
+                toMenu.openMenu(player);
+            }
+        }.runTask(instance);
+    }
+    
     @EventHandler(priority = EventPriority.LOWEST)
     public void onMenuItemClicked(InventoryClickEvent event) {
         Inventory inventory = event.getInventory();
@@ -95,7 +118,7 @@ public class PopupMenuAPI extends JavaPlugin implements Listener {
             event.setCancelled(true);
         }
     }
-
+    
     @EventHandler(priority = EventPriority.MONITOR, ignoreCancelled = true)
     public void onMenuClosed(InventoryCloseEvent event) {
         if (event.getPlayer() instanceof Player) {
