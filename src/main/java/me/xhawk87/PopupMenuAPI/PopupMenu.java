@@ -146,11 +146,17 @@ public class PopupMenu implements InventoryHolder {
     }
 
     /**
-     * Opens a menu for a player. Be aware that if you make changes to a menu
-     * with multiple viewers it will change for all of them. You should use the
-     * PopupMenuAPI.cloneMenu method if you want a copy of a menu that can be
-     * safely changed. Be sure to destroy it if you do not intend to use it
-     * again.
+     * Opens a menu for a player.
+     *
+     * Important note: This should not be used to switch from one menu to
+     * another within the same tick as there is an error with Bukkit inventories
+     * that will cause it to glitch. Instead delay 1 tick before opening or use
+     * the PopupMenuAPI.switchMenu method to do it for you.
+     *
+     * Be aware that if you make changes to a menu with multiple viewers it will
+     * change for all of them. You should use the PopupMenuAPI.cloneMenu method
+     * if you want a copy of a menu that can be safely changed. Be sure to
+     * destroy it if you do not intend to use it again.
      *
      * @param player The player to open the menu for
      */
