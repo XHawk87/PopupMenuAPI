@@ -5,7 +5,7 @@
 
     <groupId>me.xhawk87</groupId>
     <artifactId>PopupMenuAPI</artifactId>
-    <version>0.1.1</version>
+    <version>0.2</version>
     <packaging>jar</packaging>
 
     <name>PopupMenuAPI</name>
@@ -30,7 +30,7 @@
             <groupId>org.bukkit</groupId>
             <artifactId>bukkit</artifactId>
             <!-- Bukkit API Version, change if necessary -->
-            <version>1.5.1-R0.3-SNAPSHOT</version>
+            <version>1.5.2-R0.1</version>
         </dependency>
         <dependency>
             <groupId>junit</groupId>
