@@ -174,10 +174,8 @@ public class PopupMenu implements InventoryHolder {
      */
     public void closeMenu(Player player) {
         if (getInventory().getViewers().contains(player)) {
-            InventoryCloseEvent event = new InventoryCloseEvent(player.getOpenInventory());
-            Bukkit.getPluginManager().callEvent(event);
-            player.closeInventory();
             getInventory().getViewers().remove(player);
+            player.closeInventory();
         }
     }
     
