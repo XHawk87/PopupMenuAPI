@@ -9,7 +9,6 @@ import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.entity.HumanEntity;
 import org.bukkit.entity.Player;
-import org.bukkit.event.inventory.InventoryCloseEvent;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.InventoryHolder;
 import org.bukkit.inventory.ItemStack;
@@ -24,7 +23,7 @@ public class PopupMenu implements InventoryHolder {
     private HashMap<Integer, MenuItem> items = new HashMap<>();
     private Inventory inventory;
     private String title;
-    private int size;
+    private int rows;
     private boolean exitOnClickOutside = true;
     private MenuCloseBehaviour menuCloseBehaviour;
 
@@ -37,7 +36,7 @@ public class PopupMenu implements InventoryHolder {
      */
     public PopupMenu(String title, int rows) {
         this.title = title;
-        this.size = rows * 9;
+        this.rows = rows;
     }
 
     /**
@@ -200,7 +199,7 @@ public class PopupMenu implements InventoryHolder {
     @Override
     public Inventory getInventory() {
         if (inventory == null) {
-            inventory = Bukkit.createInventory(this, size, title);
+            inventory = Bukkit.createInventory(this, rows * 9, title);
         }
         return inventory;
     }
@@ -217,8 +216,9 @@ public class PopupMenu implements InventoryHolder {
 
     @Override
     protected PopupMenu clone() {
-        PopupMenu clone = new PopupMenu(title, size);
+        PopupMenu clone = new PopupMenu(title, rows);
         clone.setExitOnClickOutside(exitOnClickOutside);
+        clone.setMenuCloseBehaviour(menuCloseBehaviour);
         for (int index : items.keySet()) {
             addMenuItem(items.get(index), index);
         }
